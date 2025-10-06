@@ -1,11 +1,92 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-    <title>Halo dari GitHub Pages</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Typing Animation Responsif</title>
+<style>
+  /* Body Styling */
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+    margin: 0;
+  }
+
+  /* Container */
+  .typing-container {
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    position: relative;
+    padding: 0 20px;
+  }
+
+  /* Cursor Styling */
+  .cursor {
+    display: inline-block;
+    width: 3px;
+    background-color: #fff;
+    margin-left: 5px;
+    animation: blink 0.7s infinite;
+    vertical-align: bottom;
+  }
+
+  @keyframes blink {
+    0%, 50%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0; }
+  }
+
+  /* Ukuran font responsif */
+  .typing-container {
+    font-size: 5vw; /* default responsive */
+  }
+
+  /* Media Queries */
+  @media (max-width: 768px) {
+    .typing-container {
+      font-size: 7vw; /* tablet & mobile */
+    }
+  }
+
+  @media (max-width: 480px) {
+    .typing-container {
+      font-size: 9vw; /* HP kecil */
+    }
+  }
+</style>
 </head>
 <body>
-    <h1>Halo Dunia 🌍</h1>
-    <p>Tugas Cloud Computing </p>
+
+<div class="typing-container">
+  <span id="typed-text"></span><span class="cursor"></span>
+</div>
+
+<script>
+  const text = "Selamat datang di dunia coding!";
+  const typedText = document.getElementById("typed-text");
+  let index = 0;
+
+  function type() {
+    if (index < text.length) {
+      typedText.innerHTML += text.charAt(index);
+      index++;
+      setTimeout(type, 150); // kecepatan mengetik
+    } else {
+      setTimeout(() => {
+        typedText.innerHTML = "";
+        index = 0;
+        type();
+      }, 2000); // jeda sebelum restart
+    }
+  }
+
+  type();
+</script>
+
 </body>
 </html>
